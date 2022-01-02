@@ -1,27 +1,38 @@
-# CustomRadioComponent
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 12.2.7.
+![Example use of custom radio component](https://i.imgur.com/bvR7Cnc.gif)
+## Angular Custom Radio Component
+This app contains custom radio input component created in Angular.  Check out the live[demo](https://dawidzawada.github.io/angular-custom-radio-component/).
+Keep in mind that styling is purely optional.
 
-## Development server
+The radio component is fully supported by Angular Forms. Also allows to nest other elements/components and disable in 2 ways: 
+ - with **disabled** input property - used on at least single group element  - disable whole radio group
+ -  with **inactive** input property - disable **only** single radio element 
+ 
+ 
+### Example of use:
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+#### Form model:
+    model = {
+        radiotest: 'o2',
+    };
 
-## Code scaffolding
+  
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+#### Template:
+    <app-radio [(ngModel)]="model.radiotest" [value]="'o1'" name="radiotest"> LABEL 1 </app-radio>
+    <app-radio [(ngModel)]="model.radiotest" [value]="'o2'" name="radiotest"> LABEL 2 </app-radio>
+    <app-radio [(ngModel)]="model.radiotest" [value]="'o3'" name="radiotest" [inactive]="true"> LABEL 3 </app-radio>
 
-## Build
+  
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+ - **inputId** - ID applyied to input element
+ - **name** - name property applyied to input element, needed for form to work correctly
+ - **value** - value of radio
+ - **inactive** - property for disabling single radio element instead of whole group - [attr.disabled] hack
+  - **disabled** - property for disabling whole radio group, every app-radio element with the - same model will be disabled, only one element need to contain [disabled]="true" to disable whole model group, this prop have higher priority over **inactive** prop
 
-## Running unit tests
+**disabled** property template use example:
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+    <app-radio [(ngModel)]="model.radiotest" [value]="'o1'" name="radiotest"> LABEL 1 </app-radio>
+    <app-radio [(ngModel)]="model.radiotest" [value]="'o2'" name="radiotest"> LABEL 2 </app-radio>
+    <app-radio [(ngModel)]="model.radiotest" [value]="'o3'" name="radiotest" [disabled]="true"> LABEL 3 </app-radio>
