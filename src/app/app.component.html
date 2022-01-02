@@ -1,0 +1,28 @@
+<section>
+  <div class="labels-container">
+    <p>Pet:
+      <span class="emoji" *ngIf="model.pet === 'cat'">🐱</span>
+      <span class="emoji" *ngIf="model.pet === 'hamster'">🐹</span>
+      <span class="emoji" *ngIf="model.pet === 'tortoise'">🐢</span>
+    </p>
+    <p>Name: {{model.name.length > 0 ? model.name : '...'}}</p>
+  </div>
+  <form #testForm="ngForm">
+    <input type="text" [(ngModel)]="model.name" name="name" maxlength="25" placeholder="Pet's name">
+    <div class="radios-container">
+      <app-radio [(ngModel)]="model.pet" [value]="'cat'" name="pet">Cat<span class="emoji">🐱</span></app-radio>
+      <app-radio [(ngModel)]="model.pet" [value]="'hamster'" name="pet">Hamster<span class="emoji">🐹</span></app-radio>
+      <app-radio [(ngModel)]="model.pet" [value]="'tortoise'" name="pet" [inactive]="disableLast" [disabled]="disableAll">Tortoise<span class="emoji">🐢</span></app-radio>
+    </div>
+    <div class="buttons-container">
+      <button (click)="disableAll = !disableAll">{{disableAll ? "Enable" : "Disable"}} All Pets</button>
+      <button (click)="disableLast = !disableLast">{{disableLast ? "Enable" : "Disable"}} Tortoise</button>
+    </div>
+  </form>
+  <p class="description">
+    This app is a demo of my custom radio component in angular.
+    It is supported by form and can be used with regular inputs elements like on example above.
+    Keep in mind that styling is purely optional and created for presentation purposes!
+    Make sure to visit my <a target="_blank" href="https://github.com/dawidzawada">GitHub</a> profile.
+  </p>
+</section>

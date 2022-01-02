@@ -1,0 +1,30 @@
+<label
+  class="radio"
+  [class.disabled]="disabled || inactive"
+  [attr.for]="inputId.length > 0 ? inputId : null"
+>
+  <span class="radio-input">
+    <input
+      *ngIf="!inactive; else singleDisabling"
+      [id]="inputId"
+      type="radio"
+      [name]="name"
+      [value]="value"
+      [(ngModel)]="modelValue"
+      (change)="onChanged()"
+      [disabled]="disabled"
+    />
+    <ng-template #singleDisabling>
+      <input
+          type="radio"
+          [name]="name"
+          [value]="value"
+          [(ngModel)]="modelValue"
+          (change)="onChanged()"
+          [attr.disabled]="inactive"
+        />
+    </ng-template>
+    <span class="control"></span>
+    <span class="label"><ng-content></ng-content></span>
+  </span>
+</label>
